@@ -7,7 +7,8 @@ namespace Noah.PrutProject {
         }
 
         public void Play() {
-            _MediaPlayer.PlaySync();
+            _MediaPlayer.Stop();
+            _MediaPlayer.Play();
         }
     }
 }
