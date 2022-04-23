@@ -7,8 +7,20 @@ Console.WriteLine("************************************************");
 var soundFile = "sounds/reverbing_fart.wav";
 
 Console.WriteLine("Playing sound at: " + soundFile);
-new FartPlayer(soundFile).Play();
+var fp = new FartPlayer(soundFile);
 
-Console.WriteLine("Done.");
-Console.WriteLine("Press [Enter] to quit.");
-Console.ReadLine();
+
+Console.WriteLine("Press [Space] to play sound.");
+Console.WriteLine("Press [Esc] to quit.");
+
+while (true) {
+    var key = Console.ReadKey(true);
+    if (key.Key == ConsoleKey.Escape) {
+        Console.WriteLine("User pressed [Esc]. Breaking...");
+        break;
+    }
+    if (key.Key == ConsoleKey.Spacebar) {
+        Console.WriteLine("Press a character to play sound.");
+        fp.Play();
+    }
+}
