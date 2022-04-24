@@ -82,3 +82,16 @@ if [ -d ~/.dotnet ]; then
     PATH=$PATH:~/.dotnet
 fi
 ```
+
+## Multi-user development
+
+In order to develop in collboration, it is a good idea to set up individual accounts on the RPI for each user. On Ubuntu, the following is arguably the easiest way for adding a user called `bob`:
+
+```bash
+sudo adduser bob
+sudo usermod -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,render,netdev,gpio,spi,i2c bob
+```
+
+For the list of group associations, check the groups on another account that seems well configured using the `groups` command.
+
+Remember to install `dotnet` for the new user too.
