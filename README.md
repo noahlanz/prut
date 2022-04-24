@@ -29,15 +29,19 @@ My hardware setup is a Raspberry P3B, with Ubuntu (64bit for amr64 architectures
 
 After booting the RPI, I updated Ubuntu using the following commands:
 
-`sudo apt update`
-`sudo apt upgrade`
+```bash
+sudo apt update
+sudo apt upgrade
+```
 
 That took about 15 minutes to complete. But now I have a completely updated Ubuntu server on the RPI.
 
 For testing the audio ourput, I used the sox package:
 
-`sudo apt install sox`
-`play some_wav.wav`
+```bash
+sudo apt install sox
+play some_wav.wav
+```
 
 The sound played through the HDMI interface. All good.
 
@@ -50,11 +54,31 @@ The dev environment is based on VSCode and dotnet. The idea is to use VSCode on 
 
 `git` was already conveniently pre-installed on Ubuntu on the RPI. I only needed to let git know who I was, and the code could be be downloaded. 
 
-`git config --global user.email "****@******.***"`
-`git config --global user.name "Noah Lanz"`
-`git clone https://github.com/noahlanz/prut`
+```bash
+git config --global user.email "****@******.***"
+git config --global user.name "Noah Lanz"
+git clone https://github.com/noahlanz/prut
+```
 
 This downloads the source code onto te RPI. In VSCode, open the newly created folder, and we are now good to go.
 
 ## dotnet
 
+I abandoned the path using Docker, as I will be programing the GPIO ports, and didnt want to add the complexity of figuring out how to route those ports through to the container. 
+
+The result is that dotnet neds to be installed on the OS: https://docs.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#scripted-install
+
+```bash
+wget https://dot.net/v1/dotnet-install.sh
+chmod 700 dotnet-install.sh
+./dotnet-install.sh
+```
+
+This will install the dotnet SDK under `~/.dotnet`. Add the that folder to the serahc path by adding the following line to the `.bashrc` file:
+
+```bash
+# dotnet path
+if [ -d ~/.dotnet ]; then
+    PATH=$PATH:~/.dotnet
+fi
+```
