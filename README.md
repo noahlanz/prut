@@ -23,3 +23,38 @@ Software: C# on .NET 6
 `dotnet build`
 
 
+# Hardware Setup
+
+My hardware setup is a Raspberry P3B, with Ubuntu (64bit for amr64 architectures). The installation was done using the Raspberry Pi Imager. SSH and Wifi were configured directly using the imager tool (super convenient :-)).
+
+After booting the RPI, I updated Ubuntu using the following commands:
+
+`sudo apt update`
+`sudo apt upgrade`
+
+That took about 15 minutes to complete. But now I have a completely updated Ubuntu server on the RPI.
+
+For testing the audio ourput, I used the sox package:
+
+`sudo apt install sox`
+`play some_wav.wav`
+
+The sound played through the HDMI interface. All good.
+
+
+# Dev Environment
+
+## VSCode
+
+The dev environment is based on VSCode and dotnet. The idea is to use VSCode on my Windows based computer, and develop via SSH. In order to make that a good experience, I installed the "Remote Development" add-on to VSCode. That lets me connect to the RPI, and develop on it, as if I was working on the local computer.
+
+`git` was already conveniently pre-installed on Ubuntu on the RPI. I only needed to let git know who I was, and the code could be be downloaded. 
+
+`git config --global user.email "****@******.***"`
+`git config --global user.name "Noah Lanz"`
+`git clone https://github.com/noahlanz/prut`
+
+This downloads the source code onto te RPI. In VSCode, open the newly created folder, and we are now good to go.
+
+## dotnet
+
