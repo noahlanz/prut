@@ -56,7 +56,7 @@ The dev environment is based on VSCode and dotnet. The idea is to use VSCode on 
 
 ```bash
 git config --global user.email "****@******.***"
-git config --global user.name "Noah Lanz"
+git config --global user.name "noahlanz"
 git clone https://github.com/noahlanz/prut
 ```
 
