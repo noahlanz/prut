@@ -53,7 +53,9 @@ The sound played through the HDMI interface. All good.
 
 ### VSCode
 
-The dev environment is based on VSCode and dotnet. The idea is to use VSCode on my Windows based computer, and develop via SSH. In order to make that a good experience, I installed the "Remote Development" add-on to VSCode. That lets me connect to the RPI, and develop on it, as if I was working on the local computer.
+The dev environment is based on VSCode and dotnet. The idea is to use VSCode on my Windows based computer, and develop via SSH. In order to make that a good experience, I installed the `Remote Development` add-on to VSCode. That lets me connect to the RPI, and develop on it, as if I was working on the local computer.
+
+## Git
 
 `git` was already conveniently pre-installed on Ubuntu on the RPI. I only needed to let git know who I was, and the code could be be downloaded. 
 
