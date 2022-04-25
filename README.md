@@ -8,22 +8,25 @@ Whenever someone enters my bedroom through the door, a reverbing fart sound will
 
 # Architecture
 
-Sensor at the door: Not defined yet.
+## Hardware and operating system
 
-Signal processing: Raspberry Pi 3 with Ubuntu
+Sensor at the door: Not defined yet. Looking into the Keyestudio Startekit for plenty of possibilities: https://wiki.keyestudio.com/KS0221_keyestudio_Ultimate_Starter_Kit_for_Raspberry_Pi
 
-Speaker: Not defined yet.
+Signal processing: Raspberry Pi 3 with Ubuntu. Likely through a magnetic sensor, a PIR, or a ultrasonic proximite meter.
+
+Speaker: Mic+ V2 audio card: https://raspiaudio.com/produit/mic
+
+## Software
 
 Software: C# on .NET 6
 
-# Getting started
+Sound processing: System.Windows.Extensions.SoundPlayer. As the SoundPlayer does not work on the RPI architecture (Linux on arm64), I will have to replace it. Likely with NAudio, similar to that: https://github.com/naudio/NAudio/blob/master/Docs/PlayAudioFileConsoleApp.md
 
-## Building the software
+Sensor interface: System.Devices.GPIO
 
-`dotnet build`
+# Setup
 
-
-# Hardware Setup
+## Hardware
 
 My hardware setup is a Raspberry P3B, with Ubuntu (64bit for amr64 architectures). The installation was done using the Raspberry Pi Imager. SSH and Wifi were configured directly using the imager tool (super convenient :-)).
 
@@ -46,9 +49,9 @@ play some_wav.wav
 The sound played through the HDMI interface. All good.
 
 
-# Dev Environment
+## Dev Environment
 
-## VSCode
+### VSCode
 
 The dev environment is based on VSCode and dotnet. The idea is to use VSCode on my Windows based computer, and develop via SSH. In order to make that a good experience, I installed the "Remote Development" add-on to VSCode. That lets me connect to the RPI, and develop on it, as if I was working on the local computer.
 
@@ -62,7 +65,7 @@ git clone https://github.com/noahlanz/prut
 
 This downloads the source code onto te RPI. In VSCode, open the newly created folder, and we are now good to go.
 
-## dotnet
+### dotnet
 
 I abandoned the path using Docker, as I will be programing the GPIO ports, and didnt want to add the complexity of figuring out how to route those ports through to the container. 
 
@@ -83,7 +86,7 @@ if [ -d ~/.dotnet ]; then
 fi
 ```
 
-## Multi-user development
+### Multi-user development
 
 In order to develop in collboration, it is a good idea to set up individual accounts on the RPI for each user. On Ubuntu, the following is arguably the easiest way for adding a user called `bob`:
 
@@ -95,3 +98,10 @@ sudo usermod -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,ren
 For the list of group associations, check the groups on another account that seems well configured using the `groups` command.
 
 Remember to install `dotnet` for the new user too.
+
+# Development
+
+## Building the software
+
+`dotnet build`
+
