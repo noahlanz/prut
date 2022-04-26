@@ -10,23 +10,23 @@ Whenever someone enters my bedroom through the door, a reverbing fart sound will
 
 ## Hardware and operating system
 
-Sensor at the door: Not defined yet. Looking into the Keyestudio Startekit for plenty of possibilities: https://wiki.keyestudio.com/KS0221_keyestudio_Ultimate_Starter_Kit_for_Raspberry_Pi
+Sensor at the door: Not defined yet. Looking into the [Keyestudio Startekit](https://wiki.keyestudio.com/KS0221_keyestudio_Ultimate_Starter_Kit_for_Raspberry_Pi) for plenty of possibilities.
 
 Signal processing: Raspberry Pi 3 with Ubuntu. Likely through a magnetic sensor, a PIR, or a ultrasonic proximite meter.
 
-Speaker: Mic+ V2 audio card: https://raspiaudio.com/produit/mic
+Speaker: [Mic+ V2](https://raspiaudio.com/produit/mic) audio card.
 
 ## Software
 
 Software: C# on .NET 6
 
-Sound processing: System.Windows.Extensions.SoundPlayer. As the SoundPlayer does not work on the RPI architecture (Linux on arm64), I will have to replace it. Likely with NAudio, similar to that: https://github.com/naudio/NAudio/blob/master/Docs/PlayAudioFileConsoleApp.md
+Sound processing:  The C# interface for playing sound is based on [NetCoreAudio](https://github.com/mobiletechtracker/NetCoreAudio), which is a wrapper around the alsa components in Linux. These need to be installed separately. NetCoreAudio seemed to be the best fit, as it works on all platforms. This is in contrast to System.Windows.Extensions.SoundPlayer and NAudio, which both are only available on Windows. 
 
 Sensor interface: System.Devices.GPIO
 
 # Setup
 
-## Hardware
+## Hardware and operating system
 
 My hardware setup is a Raspberry P3B, with Ubuntu (64bit for amr64 architectures). The installation was done using the Raspberry Pi Imager. SSH and Wifi were configured directly using the imager tool (super convenient :-)).
 
@@ -42,6 +42,10 @@ That took about 15 minutes to complete. But now I have a completely updated Ubun
 For testing the audio ourput, I used the sox package:
 
 ```bash
+# required for the program
+sudo apt install alsa-utils 
+
+# optional, for testing the audio capabilities
 sudo apt install sox
 play some_wav.wav
 ```
@@ -71,7 +75,7 @@ This downloads the source code onto te RPI. In VSCode, open the newly created fo
 
 I abandoned the path using Docker, as I will be programing the GPIO ports, and didnt want to add the complexity of figuring out how to route those ports through to the container. 
 
-The result is that dotnet neds to be installed on the OS: https://docs.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#scripted-install
+The result is that dotnet needs to be [installed on the OS](https://docs.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#scripted-install): 
 
 ```bash
 wget https://dot.net/v1/dotnet-install.sh

@@ -1,14 +1,20 @@
+using NetCoreAudio;
+
 namespace Noah.PrutProject {
 
     public class FartPlayer {
-        private System.Media.SoundPlayer _MediaPlayer;
+
+        private Player _SoundPlayer;
+        private string _SoundFile;
+
         public FartPlayer(string soundFile) {
-            _MediaPlayer = new System.Media.SoundPlayer(soundFile);
+            _SoundPlayer = new Player();
+            _SoundFile = soundFile;
         }
 
         public void Play() {
-            _MediaPlayer.Stop();
-            _MediaPlayer.Play();
+            _SoundPlayer.Stop();
+            _SoundPlayer.Play(_SoundFile);
         }
     }
 }
