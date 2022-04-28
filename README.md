@@ -111,3 +111,12 @@ Remember to install `dotnet` for the new user too.
 
 `dotnet build`
 
+# Resources
+
+* [installed on the OS](https://docs.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#scripted-install)
+* [Keyestudio Startekit](https://wiki.keyestudio.com/KS0221_keyestudio_Ultimate_Starter_Kit_for_Raspberry_Pi)
+* [.NET Core, Ubuntu & RPI GPIO](https://www.jenx.si/2020/02/21/net-core-ubuntu-raspberry-pi-gpio/)
+* [NetCoreAudio](https://github.com/mobiletechtracker/NetCoreAudio)
+* [Blinking LEDs with Raspberry Pi - DevBlog](https://devblogs.microsoft.com/dotnet/blinking-leds-with-raspberry-pi/)
+* [dotnet for IoT](https://dotnet.microsoft.com/en-us/learn/iot)
+
